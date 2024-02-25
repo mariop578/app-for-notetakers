@@ -48,6 +48,43 @@ router.post("/notes", async (req, res) => {
   }
 });
 
-// router.delete("/notes/:id", (req, res) => {});
+router.delete("/notes/:id", async (req, res) => {
+  const id = req.params.id;
+  fs.readFile("./db/db.json", "utf-8", (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    const notes = JSON.parse(data);
+    const newArr = notes.filter((note) => note.id !== id);
+    res.json(newArr);
+    fs.writeFile("./db/db.json", JSON.stringify(newArr), (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log("Deleted Succesfully");
+    });
+  });
+});
 
 module.exports = router;
+
+// try {
+//   const id = req.params.id;
+//   const noteData = fs.readFile("./db/db.json", "utf-8", (err, data) => {});
+//   const notes = JSON.parse(noteData);
+//   const newArr = notes.filter((note) => note.id !== id);
+//   console.log(noteData);
+//   // fs.writeFile(
+//   //   "./db/db.json",
+//   //   JSON.stringify(newArr, null, 2),
+//   //   "utf-8",
+//   //   (err, data) => {
+//   //     if (err) {
+//   //       console.log(err);
+//   //     }
+//   //     res.json(newArr);
+//   //   }
+//   // );
+// } catch (err) {
+//   res.status(500).json(err);
+// }
