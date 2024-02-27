@@ -16,11 +16,17 @@ An express and node application for users to create, save and delete notes.
 
 ## Installation
 
-After pulling down the repo, Run npm i in terminal to install the dependencies.
+After pulling down the repo, Run this command in terminal to install the dependencies.
+```bash
+npm i
+```
 
 ## Usage
 
-Run node server in terminal and the app will be hosted on localhost:3001.
+Run this command in terminal and the app will be hosted on localhost:3001.
+```bash
+node server
+```
 
 ## License
 
